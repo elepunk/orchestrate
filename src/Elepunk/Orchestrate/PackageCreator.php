@@ -114,6 +114,13 @@ class PackageCreator extends Workbench {
         $this->files->put($path.'/Validator/.gitkeep', '');
     }
 
+    /**
+     * Create the manifest file for the extension.
+     *
+     * @param  \Illuminate\Workbench\Package  $package
+     * @param  string  $directory
+     * @return void
+     */
     protected function writeManifestFile(Package $package, $directory)
     {
         $stub = $this->files->get(__DIR__.'/stubs/orchestra.json');
@@ -123,6 +130,13 @@ class PackageCreator extends Workbench {
         $this->files->put($directory.'/orchestra.json', $stub);
     }
 
+    /**
+     * Create the route file for the extension.
+     *
+     * @param  \Illuminate\Workbench\Package  $package
+     * @param  string  $directory
+     * @return void
+     */
     protected function writeRouteFile(Package $package, $directory)
     {
         $stub = $this->files->get(__DIR__.'/stubs/routes.php');
@@ -132,6 +146,13 @@ class PackageCreator extends Workbench {
         $this->files->put($directory.'/src/routes.php', $stub);
     }
 
+    /**
+     * Create the view file for the extension.
+     *
+     * @param  \Illuminate\Workbench\Package  $package
+     * @param  string  $directory
+     * @return void
+     */
     protected function writeHelloViewFile(Package $package, $directory)
     {   
         $stub = $this->files->get(__DIR__.'/stubs/hello.blade.php');

@@ -1,15 +1,14 @@
 {
     "name": "elepunk/orchestrate",
-    "description": "",
+    "description": "Orchestra platform extension boilerplate generator",
     "authors": [
         {
-            "name": "Elepunk",
+            "name": "Ahmad Shah Hafizan Hamidin",
             "email": "ahmadshahhafizan@gmail.com"
         }
     ],
     "require": {
-        "php": ">=5.3.0",
-        "illuminate/support": "4.1.x"
+        "php": ">=5.3.0"
     },
     "autoload": {
         "psr-0": {
