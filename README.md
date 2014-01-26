@@ -2,7 +2,7 @@
 
 [Orchestra/Platform](http://orchestraplatform.com/) extension skeleton generator.  This will provide you with a basic directory structures needed to kickstart the development process.
 
-### Installation
+### Installation & Usage
 
 Add the package into your composer.json file.
 
@@ -11,8 +11,6 @@ Add the package into your composer.json file.
     "elepunk/orchestrate": "0.1.*"
  },
  ```
-
- ### Usage
 
 Update ```app/start/global.php``` so that Orchestra\Platform is able to detect the extensions.
 
