@@ -1,4 +1,3 @@
-orchestrate
-===========
+##Orchestrate
 
-Orchestra Platform extension generator
+Orchestra Platform extension generator.
