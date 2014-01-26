@@ -6,7 +6,7 @@
 
 Add the package into your composer.json file.
 
-```json
+```javascript
 "require": {
     "elepunk/orchestrate": "0.1.*"
  },
