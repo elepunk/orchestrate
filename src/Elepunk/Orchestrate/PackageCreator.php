@@ -17,7 +17,8 @@ class PackageCreator extends Workbench {
         'ControllerDirectory',
         'ProcessorDirectory',
         'HandlerDirectory',
-        'ValidatorDirectory'
+        'ValidatorDirectory',
+        'HelloViewFile'
     );
 
     /**
@@ -155,9 +156,9 @@ class PackageCreator extends Workbench {
      */
     protected function writeHelloViewFile(Package $package, $directory)
     {   
-        $stub = $this->files->get(__DIR__.'/stubs/hello.blade.php');
+        $stub = __DIR__.'/stubs/hello.blade.php';
 
-        $this->files->put($directory.'/views/hello.blade.php', $stub);
+        $this->files->copy($stub, $directory.'/src/views/hello.blade.php');
     }
 
     /**
