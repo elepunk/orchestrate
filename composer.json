@@ -1,0 +1,20 @@
+{
+    "name": "elepunk/orchestrate",
+    "description": "",
+    "authors": [
+        {
+            "name": "Elepunk",
+            "email": "ahmadshahhafizan@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "illuminate/support": "4.1.x"
+    },
+    "autoload": {
+        "psr-0": {
+            "Elepunk\\Orchestrate": "src/"
+        }
+    },
+    "minimum-stability": "dev"
+}
