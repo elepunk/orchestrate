@@ -3,7 +3,8 @@
 use Illuminate\Workbench\Package;
 use Illuminate\Workbench\PackageCreator as Workbench;
 
-class PackageCreator extends Workbench {
+class PackageCreator extends Workbench
+{
 
     /**
      * The building blocks of the extension.
@@ -30,8 +31,7 @@ class PackageCreator extends Workbench {
      */
     public function writeSupportFiles(Package $package, $directory, $plain)
     {
-        foreach (array('Manifest', 'Route') as $file)
-        {
+        foreach (array('Manifest', 'Route') as $file) {
             $this->{"write{$file}File"}($package, $directory, $plain);
         }
     }
@@ -45,8 +45,7 @@ class PackageCreator extends Workbench {
      */
     public function writeSupportDirectories(Package $package, $directory)
     {
-        foreach (array('config', 'migrations', 'views') as $support)
-        {
+        foreach (array('config', 'migrations', 'views') as $support) {
             $this->writeSupportDirectory($package, $support, $directory);
         }
     }
@@ -166,7 +165,6 @@ class PackageCreator extends Workbench {
     /**
      * Create the view file for the extension.
      *
-     * @param  \Illuminate\Workbench\Package  $package
      * @param  string  $directory
      * @return void
      */
@@ -176,5 +174,4 @@ class PackageCreator extends Workbench {
 
         $this->files->copy($stub, $directory.'/src/views/hello.blade.php');
     }
-
 }

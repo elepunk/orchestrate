@@ -1,10 +1,13 @@
 {
     "name": "elepunk/orchestrate",
     "description": "Orchestra platform extension generator",
+    "keywords": ["orchestra-platform", "orchestrate", "orchestra", "generator", "laravel"],
+    "license": "MIT",
     "authors": [
         {
             "name": "Ahmad Shah Hafizan Hamidin",
-            "email": "ahmadshahhafizan@gmail.com"
+            "email": "ahmadshahhafizan@gmail.com",
+            "homepage": "https://github.com/ahmadshah"
         }
     ],
     "require": {

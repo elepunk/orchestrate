@@ -6,7 +6,8 @@ use Elepunk\Orchestrate\PackageCreator;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 
-class ExtensionMakeCommand extends Command {
+class ExtensionMakeCommand extends Command
+{
 
     /**
      * The console command name.
@@ -49,7 +50,7 @@ class ExtensionMakeCommand extends Command {
      */
     public function fire()
     {
-        $workbench = $this->runCreator($this->buildPackage());
+        $this->runCreator($this->buildPackage());
 
         $this->info('Orchestra Platform extension created. Run php artisan extension:detect');
     }
@@ -88,9 +89,9 @@ class ExtensionMakeCommand extends Command {
      */
     protected function getPackageSegments()
     {
-        $package = $this->argument('package');
+        $package = (string) $this->argument('package');
 
-        return array_map('studly_case', explode('/', $package, 2));     
+        return array_map('studly_case', explode('/', $package, 2));
     }
 
     /**
@@ -104,5 +105,4 @@ class ExtensionMakeCommand extends Command {
             array('package', InputArgument::REQUIRED, 'The name (vendor/name) of the extension.'),
         );
     }
-
 }

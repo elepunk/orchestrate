@@ -2,6 +2,10 @@
 
 [Orchestra/Platform](http://orchestraplatform.com/) extension skeleton generator.  This will provide you with a basic directory structures needed to kickstart the development process.
 
+[![Build Status](https://travis-ci.org/elepunk/orchestrate.png?branch=master)](https://travis-ci.org/elepunk/orchestrate)
+[![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/elepunk/orchestrate/badges/quality-score.png?s=ed3dc42b70b401103d1e4a919df828499a9c3182)](https://scrutinizer-ci.com/g/elepunk/orchestrate/)
+[![Code Coverage](https://scrutinizer-ci.com/g/elepunk/orchestrate/badges/coverage.png?s=b3518671ab38232ce352aeeb4458ca4fa7ae24ca)](https://scrutinizer-ci.com/g/elepunk/orchestrate/)
+
 ### Installation & Usage
 
 Add the package into your composer.json file.

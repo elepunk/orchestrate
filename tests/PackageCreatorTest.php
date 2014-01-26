@@ -3,7 +3,8 @@
 use Mockery as m;
 use Elepunk\Orchestrate\PackageCreator;
 
-class PcckageCreatorTest extends \PHPUnit_Framework_TestCase {
+class PcckageCreatorTest extends \PHPUnit_Framework_TestCase
+{
 
     /**
      * Teardown test environment
@@ -121,7 +122,7 @@ class PcckageCreatorTest extends \PHPUnit_Framework_TestCase {
         $filesystem->shouldReceive('copy')->once()->andReturn(true);
 
         $creator = new PackageCreator($filesystem);
-        $creator->writeHelloViewFile($package, __DIR__);
+        $creator->writeHelloViewFile(__DIR__);
     }
 
     /**
@@ -150,5 +151,4 @@ class PcckageCreatorTest extends \PHPUnit_Framework_TestCase {
     {
         return array(m::mock('Illuminate\Filesystem\Filesystem'), m::mock('Illuminate\Workbench\Package'));
     }
-
 }

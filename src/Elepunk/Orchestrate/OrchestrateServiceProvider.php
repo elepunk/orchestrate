@@ -3,7 +3,8 @@
 use Illuminate\Support\ServiceProvider;
 use Elepunk\Orchestrate\Console\ExtensionMakeCommand;
 
-class OrchestrateServiceProvider extends ServiceProvider {
+class OrchestrateServiceProvider extends ServiceProvider
+{
 
     /**
      * Indicates if loading of the provider is deferred.
@@ -19,13 +20,11 @@ class OrchestrateServiceProvider extends ServiceProvider {
      */
     public function register()
     {
-        $this->app->bindShared('package.creator', function($app)
-        {
+        $this->app->bindShared('package.creator', function ($app) {
             return new PackageCreator($app['files']);
         });
 
-        $this->app->bindShared('command.orchestrate', function($app)
-        {
+        $this->app->bindShared('command.orchestrate', function ($app) {
             return new ExtensionMakeCommand($app['package.creator']);
         });
 
@@ -41,5 +40,4 @@ class OrchestrateServiceProvider extends ServiceProvider {
     {
         return array('package.creator', 'comand.orchestrate');
     }
-
 }
