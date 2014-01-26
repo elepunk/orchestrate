@@ -52,6 +52,22 @@ class PackageCreator extends Workbench {
     }
 
     /**
+     * Write the stub ServiceProvider for the package.
+     *
+     * @param  \Illuminate\Workbench\Package  $package
+     * @param  string  $directory
+     * @return void
+     */
+    public function writeServiceProvider(Package $package, $directory, $plain)
+    {
+        $stub = $this->files->get(__DIR__.'/stubs/ServiceProvider.php');
+
+        $stub = $this->formatPackageStub($package, $stub);
+
+        $this->writeProviderStub($package, $directory, $stub);
+    }
+
+    /**
      * Create the controller directory for the extension.
      *
      * @param  \Illuminate\Workbench\Package  $package
@@ -154,22 +170,11 @@ class PackageCreator extends Workbench {
      * @param  string  $directory
      * @return void
      */
-    protected function writeHelloViewFile(Package $package, $directory)
+    public function writeHelloViewFile(Package $package, $directory)
     {   
         $stub = __DIR__.'/stubs/hello.blade.php';
 
         $this->files->copy($stub, $directory.'/src/views/hello.blade.php');
-    }
-
-    /**
-     * Load the raw service provider file.
-     *
-     * @param  bool   $plain
-     * @return string
-     */
-    protected function getProviderFile($plain)
-    {
-        return $this->files->get(__DIR__.'/stubs/provider.stub');
     }
 
 }
