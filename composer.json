@@ -1,6 +1,6 @@
 {
     "name": "elepunk/orchestrate",
-    "description": "Orchestra platform extension boilerplate generator",
+    "description": "Orchestra platform extension generator",
     "authors": [
         {
             "name": "Ahmad Shah Hafizan Hamidin",
@@ -9,6 +9,11 @@
     ],
     "require": {
         "php": ">=5.3.0"
+    },
+    "require-dev": {
+        "illuminate/workbench": "4.1.x",
+        "illuminate/console": "4.1.x",
+        "mockery/mockery": "0.8.*"
     },
     "autoload": {
         "psr-0": {
