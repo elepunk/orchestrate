@@ -225,7 +225,7 @@ class PackageCreator extends Workbench
      * @param  int    $options json_encode options (defaults to JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE)
      * @return string Encoded json
      */
-    public static function encode($data, $options = 448)
+    protected function encode($data, $options = 448)
     {
         if (version_compare(PHP_VERSION, '5.4', '>=')) {
             return json_encode($data, $options);
