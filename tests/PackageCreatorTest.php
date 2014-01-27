@@ -19,7 +19,7 @@ class PcckageCreatorTest extends \PHPUnit_Framework_TestCase
      * 
      * @test
      */
-    public function testWriteSupportFilesMethod()
+    public function testWriteOrchestraFilesMethod()
     {
         list($filesystem, $package) = $this->getMocks();
 
@@ -27,7 +27,7 @@ class PcckageCreatorTest extends \PHPUnit_Framework_TestCase
         ->shouldReceive('put')->twice()->andReturn(1);
 
         $creator = new PackageCreator($filesystem);
-        $creator->writeSupportFiles($package, __DIR__, false);
+        $creator->writeOrchestraFiles($package, __DIR__);
     }
 
     /**
@@ -140,6 +140,26 @@ class PcckageCreatorTest extends \PHPUnit_Framework_TestCase
 
         $creator = new PackageCreator($filesystem);
         $creator->writeServiceProvider($package, __DIR__, false);
+    }
+
+    /**
+     * Test update composer.json file
+     * 
+     * @test
+     */
+    public function testWriteComposerFileMethod()
+    {
+        $composer = array(
+            'autoload' => array()
+        );
+
+        list($filesystem, $package) = $this->getMocks();
+
+        $filesystem->shouldReceive('get')->once()->andReturn(json_encode($composer))
+        ->shouldReceive('put')->once()->andReturn(1);
+
+        $creator = new PackageCreator($filesystem);
+        $creator->writeAutoloader($package, __DIR__);
     }
 
     /**

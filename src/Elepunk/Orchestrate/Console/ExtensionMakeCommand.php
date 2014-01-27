@@ -52,7 +52,7 @@ class ExtensionMakeCommand extends Command
     {
         $this->runCreator($this->buildPackage());
 
-        $this->info('Orchestra Platform extension created. Run php artisan extension:detect');
+        $this->info('Orchestra Platform extension created. Run php artisan dump-autoload');
     }
 
     /**

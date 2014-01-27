@@ -30,9 +30,11 @@ Add the service provider in ```app/config/app.php```.
 ),
 ```
 
-Run ```php artisan orchestrate foo/bar``` and the run ```php artisan extension:detect``` and you will see your newly created extension. All extensions will be created under ```extension``` directory.
+Run ```php artisan orchestrate foo/bar```to generate the extension skeleton.
 
-Don't forget to autoload your extension namespace inside ```composer.json``` file.
+Run ```php artisan dump-autoload``` to reload the autoloader.
+
+Run ```php artisan extension:detect``` and you will see your newly created extension. All extensions will be created under ```extension``` directory.
 
 ### TODO
 
