@@ -233,14 +233,6 @@ class PackageCreator extends Workbench
 
         $json = json_encode($data);
 
-        $prettyPrint = (bool) ($options & self::JSON_PRETTY_PRINT);
-        $unescapeUnicode = (bool) ($options & self::JSON_UNESCAPED_UNICODE);
-        $unescapeSlashes = (bool) ($options & self::JSON_UNESCAPED_SLASHES);
-
-        if (!$prettyPrint && !$unescapeUnicode && !$unescapeSlashes) {
-            return $json;
-        }
-
         $result = '';
         $pos = 0;
         $strLen = strlen($json);
@@ -249,6 +241,9 @@ class PackageCreator extends Workbench
         $outOfQuotes = true;
         $buffer = '';
         $noescape = true;
+        $prettyPrint = true;
+        $unescapeUnicode = true;
+        $unescapeSlashes = true;
 
         for ($i = 0; $i < $strLen; $i++) {
             // Grab the next character in the string
