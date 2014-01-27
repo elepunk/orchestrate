@@ -163,6 +163,28 @@ class PcckageCreatorTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test json encode method
+     * 
+     * @test
+     */
+    public function testEncodeMethod()
+    {
+        $composer = array(
+            'autoload' => array()
+        );
+
+        list($filesystem, $package) = $this->getMocks();
+
+        $creator = new PackageCreator($filesystem);
+
+        $reflection = new \ReflectionClass(get_class($creator));
+        $method = $reflection->getMethod('encode');
+        $method->setAccessible(true);
+
+        $method->invokeArgs($creator, $composer);
+    }
+
+    /**
      * Get mocks classes
      *
      * @return array
