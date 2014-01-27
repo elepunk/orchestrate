@@ -21,8 +21,9 @@ class ExtensionMakeCommandTest extends \PHPUnit_Framework_TestCase {
     public function testFireMethod()
     {
         $packageCreator = m::mock('Elepunk\Orchestrate\PackageCreator');
-        $input  = m::mock('\Symfony\Component\Console\Input\InputInterface');
-        $output = m::mock('\Symfony\Component\Console\Output\OutputInterface');
+        $input  = m::mock('Symfony\Component\Console\Input\InputInterface');
+        $output = m::mock('Symfony\Component\Console\Output\OutputInterface');
+        $command = m::mock('Illuminate\Console\Command');
 
         $input->shouldReceive('bind')->once()
         ->shouldReceive('isInteractive')->once()->andReturn(true)
@@ -31,7 +32,7 @@ class ExtensionMakeCommandTest extends \PHPUnit_Framework_TestCase {
 
         $packageCreator->shouldReceive('create')->once();
 
-        $output->shouldReceive('writeln')->once()->with('<info>Orchestra Platform extension created. Run php artisan extension:detect</info>');
+        $output->shouldReceive('writeln')->once()->with('<info>Orchestra Platform extension created. Run php artisan dump-autoload</info>');
 
         $stub = new Command($packageCreator);
         $stub->run($input, $output);

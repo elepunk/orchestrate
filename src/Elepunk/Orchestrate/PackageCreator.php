@@ -1,5 +1,6 @@
 <?php namespace Elepunk\Orchestrate;
 
+use Illuminate\Support\Collection;
 use Illuminate\Workbench\Package;
 use Illuminate\Workbench\PackageCreator as Workbench;
 
@@ -13,13 +14,14 @@ class PackageCreator extends Workbench
      */
     protected $blocks = array(
         'SupportDirectories',
-        'SupportFiles',
+        'OrchestraFiles',
         'ServiceProvider',
         'ControllerDirectory',
         'ProcessorDirectory',
         'HandlerDirectory',
         'ValidatorDirectory',
-        'HelloViewFile'
+        'HelloViewFile',
+        'Autoloader'
     );
 
     /**
@@ -29,10 +31,10 @@ class PackageCreator extends Workbench
      * @param  string  $directory
      * @return void
      */
-    public function writeSupportFiles(Package $package, $directory, $plain)
+    public function writeOrchestraFiles(Package $package, $directory)
     {
         foreach (array('Manifest', 'Route') as $file) {
-            $this->{"write{$file}File"}($package, $directory, $plain);
+            $this->{"write{$file}File"}($package, $directory);
         }
     }
 
@@ -131,6 +133,44 @@ class PackageCreator extends Workbench
     }
 
     /**
+     * Create the view file for the extension.
+     *
+     * @param  \Illuminate\Workbench\Package  $package
+     * @param  string  $directory
+     * @return void
+     */
+    public function writeHelloViewFile(Package $package, $directory)
+    {   
+        $stub = __DIR__.'/stubs/hello.blade.php';
+
+        $this->files->copy($stub, $directory.'/src/views/hello.blade.php');
+    }
+
+    /**
+     * Autoload extension namespace
+     * 
+     * @param  \Illuminate\Workbench\Package  $package
+     * @param  string  $directory
+     * @return void
+     */
+    public function writeAutoloader(Package $package, $directory)
+    {
+        $stub = $this->files->get($directory.'/../../../composer.json');
+
+        $stub = json_decode($stub, true);
+
+        if ( ! array_key_exists('psr-0', $stub['autoload'])) {
+            $stub['autoload']['psr-0'] = array();
+        }
+
+        list($namespace, $path) = $this->appendAutoloader($package, $directory);
+
+        $stub['autoload']['psr-0'][$namespace] =  $path;
+
+        $this->files->put($directory.'/../../../composer.json', json_encode($stub, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
+    }
+
+    /**
      * Create the manifest file for the extension.
      *
      * @param  \Illuminate\Workbench\Package  $package
@@ -162,16 +202,19 @@ class PackageCreator extends Workbench
         $this->files->put($directory.'/src/routes.php', $stub);
     }
 
-    /**
-     * Create the view file for the extension.
-     *
-     * @param  string  $directory
-     * @return void
-     */
-    public function writeHelloViewFile(Package $package, $directory)
-    {   
-        $stub = __DIR__.'/stubs/hello.blade.php';
+    protected function getComposerContent($directory)
+    {
+        
+    }
 
-        $this->files->copy($stub, $directory.'/src/views/hello.blade.php');
+    /**
+     * [appendAutoloader description]
+     * @param  [type] $package   [description]
+     * @param  [type] $directory [description]
+     * @return [type]            [description]
+     */
+    protected function appendAutoloader($package, $directory)
+    {
+        return array("{$package->vendor}\\{$package->name}", 'extension/'.$package->lowerVendor.'/'.$package->lowerName.'/src');
     }
 }
