@@ -63,7 +63,7 @@ class ExtensionMakeCommand extends Command
      */
     protected function runCreator($package)
     {
-        $path = $this->laravel['path.base'].'/extension';
+        $path = $this->laravel['path.base'].'/extensions';
 
         return $this->creator->create($package, $path, false);
     }

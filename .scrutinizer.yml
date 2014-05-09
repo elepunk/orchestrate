@@ -4,7 +4,7 @@ filter:
     paths:
         - 'src/*'
     excluded_paths:
-        - 'src/Elepunk/Orchestrate/stubs/*'
+        - 'src/Orchestrate/stubs/*'
         - 'vendor/*'
         - 'tests/*'
 tools:
@@ -23,9 +23,9 @@ tools:
         excluded_dirs:
             - vendor
             - tests
-            - src/Elepunk/Orchestrate/stubs
+            - src/Orchestrate/stubs
     php_pdepend:
         excluded_dirs:
             - vendor
             - tests
-            - src/Elepunk/Orchestrate/stubs/
+            - src/Orchestrate/stubs/
