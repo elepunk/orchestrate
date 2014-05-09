@@ -1,6 +1,7 @@
 <?php namespace Elepunk\Orchestrate\Tests;
 
 use Mockery as m;
+use Illuminate\Support\Facades\Config;
 use Elepunk\Orchestrate\Console\ExtensionMakeCommand as Command;
 
 class ExtensionMakeCommandTest extends \PHPUnit_Framework_TestCase {
@@ -29,6 +30,8 @@ class ExtensionMakeCommandTest extends \PHPUnit_Framework_TestCase {
         ->shouldReceive('isInteractive')->once()->andReturn(true)
         ->shouldReceive('validate')->once()
         ->shouldReceive('getArgument')->once()->andReturn('foo/bar');
+
+        Config::shouldReceive('get')->once()->andReturn('foobar');
 
         $packageCreator->shouldReceive('create')->once();
 

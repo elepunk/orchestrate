@@ -16,6 +16,7 @@
     "require-dev": {
         "illuminate/workbench": "4.1.x",
         "illuminate/console": "4.1.x",
+        "illuminate/config": "4.1.x",
         "mockery/mockery": "0.9.*"
     },
     "autoload": {

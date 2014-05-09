@@ -32,6 +32,18 @@ class OrchestrateServiceProvider extends ServiceProvider
     }
 
     /**
+     * Bootstrap the application events.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        $path = realpath(__DIR__.'/../');
+
+        $this->package('elepunk/orchestrate', 'elepunk/orchestrate', $path);
+    }
+
+    /**
      * Get the services provided by the provider.
      *
      * @return array

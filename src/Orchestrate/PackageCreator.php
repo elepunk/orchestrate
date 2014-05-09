@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Collection;
 use Illuminate\Workbench\Package;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Workbench\PackageCreator as Workbench;
 
 class PackageCreator extends Workbench
@@ -227,7 +228,26 @@ class PackageCreator extends Workbench
      */
     protected function appendAutoloader($package, $directory)
     {
-        return array("{$package->vendor}\\{$package->name}\\", 'extensions/'.$package->lowerVendor.'/'.$package->lowerName.'/src/'.$package->name);
+        return array("{$package->vendor}\\{$package->name}\\", Config::get('elepunk/orchestrate::extension_directory').'/'.$package->lowerVendor.'/'.$package->lowerName.'/src/'.$package->name);
+    }
+
+    /**
+     * Create the main source directory for the package.
+     *
+     * @param  \Illuminate\Workbench\Package  $package
+     * @param  string  $directory
+     * @return string
+     */
+    protected function createClassDirectory(Package $package, $directory)
+    {
+        $path = $directory.'/src/'.$package->name;
+
+        if ( ! $this->files->isDirectory($path))
+        {
+            $this->files->makeDirectory($path, 0777, true);
+        }
+
+        return $path;
     }
     
 }

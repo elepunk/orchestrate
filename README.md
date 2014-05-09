@@ -12,14 +12,14 @@ Add the package into your composer.json file.
 
 ```javascript
 "require": {
-    "elepunk/orchestrate": "0.1.*"
+    "elepunk/orchestrate": "0.2.*"
  },
  ```
 
 Update ```app/start/global.php``` so that Orchestra\Platform is able to detect the extensions.
 
 ```php
-App::make('orchestra.extension.finder')->addPath(base_path().'/extension/*/*/');
+App::make('orchestra.extension.finder')->addPath(base_path().'/extensions/*/*/');
 ```
 
 Add the service provider in ```app/config/app.php```.
@@ -36,8 +36,4 @@ Run ```php artisan dump-autoload``` to reload the autoloader.
 
 Run ```php artisan extension:detect``` and you will see your newly created extension. All extensions will be created under ```extension``` directory.
 
-### TODO
-
-- Add support for PSR-4 autoloader
-- Autoload namespace into composer.json file
-- Add extra options
+If you want to change the default directory just publish the configuration file ```php artisan config:publish elepunk/orchestrate```.

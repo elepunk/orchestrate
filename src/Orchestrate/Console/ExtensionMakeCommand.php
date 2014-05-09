@@ -2,6 +2,7 @@
 
 use Illuminate\Console\Command;
 use Illuminate\Workbench\Package;
+use Illuminate\Support\Facades\Config;
 use Elepunk\Orchestrate\PackageCreator;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
@@ -63,7 +64,7 @@ class ExtensionMakeCommand extends Command
      */
     protected function runCreator($package)
     {
-        $path = $this->laravel['path.base'].'/extensions';
+        $path = $this->laravel['path.base'].'/'.Config::get('elepunk/orhchestrate::extension_directory');
 
         return $this->creator->create($package, $path, false);
     }
