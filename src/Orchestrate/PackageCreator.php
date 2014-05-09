@@ -18,6 +18,7 @@ class PackageCreator extends Workbench
         'ServiceProvider',
         'ControllerDirectory',
         'ProcessorDirectory',
+        'PresenterDirectory',
         'HandlerDirectory',
         'ValidatorDirectory',
         'HelloViewFile',
@@ -77,7 +78,7 @@ class PackageCreator extends Workbench
      */
     public function writeControllerDirectory(Package $package, $directory)
     {
-        $path = $directory.'/src/'.$package->vendor.'/'.$package->name;
+        $path = $directory.'/src/'.$package->name;
 
         $this->files->makeDirectory($path.'/Controller');
 
@@ -93,11 +94,27 @@ class PackageCreator extends Workbench
      */
     public function writeProcessorDirectory(Package $package, $directory)
     {
-        $path = $directory.'/src/'.$package->vendor.'/'.$package->name;
+        $path = $directory.'/src/'.$package->name;
 
         $this->files->makeDirectory($path.'/Processor');
 
         $this->files->put($path.'/Processor/.gitkeep', '');
+    }
+
+    /**
+     * Create the presenter directory for the extension.
+     *
+     * @param  \Illuminate\Workbench\Package  $package
+     * @param  string  $directory
+     * @return void
+     */
+    public function writePresenterDirectory(Package $package, $directory)
+    {
+        $path = $directory.'/src/'.$package->name;
+
+        $this->files->makeDirectory($path.'/Presenter');
+
+        $this->files->put($path.'/Presenter/.gitkeep', '');
     }
 
     /**
@@ -109,7 +126,7 @@ class PackageCreator extends Workbench
      */
     public function writeHandlerDirectory(Package $package, $directory)
     {
-        $path = $directory.'/src/'.$package->vendor.'/'.$package->name;
+        $path = $directory.'/src/'.$package->name;
 
         $this->files->makeDirectory($path.'/Handler');
 
@@ -125,7 +142,7 @@ class PackageCreator extends Workbench
      */
     public function writeValidatorDirectory(Package $package, $directory)
     {
-        $path = $directory.'/src/'.$package->vendor.'/'.$package->name;
+        $path = $directory.'/src/'.$package->name;
 
         $this->files->makeDirectory($path.'/Validator');
 
@@ -159,13 +176,13 @@ class PackageCreator extends Workbench
 
         $stub = json_decode($stub, true);
 
-        if ( ! array_key_exists('psr-0', $stub['autoload'])) {
-            $stub['autoload']['psr-0'] = array();
+        if ( ! array_key_exists('psr-4', $stub['autoload'])) {
+            $stub['autoload']['psr-4'] = array();
         }
 
         list($namespace, $path) = $this->appendAutoloader($package, $directory);
 
-        $stub['autoload']['psr-0'][$namespace] =  $path;
+        $stub['autoload']['psr-4'][$namespace] =  $path;
 
         $this->files->put($directory.'/../../../composer.json', json_encode($stub, 448));
     }
@@ -210,7 +227,7 @@ class PackageCreator extends Workbench
      */
     protected function appendAutoloader($package, $directory)
     {
-        return array("{$package->vendor}\\{$package->name}", 'extension/'.$package->lowerVendor.'/'.$package->lowerName.'/src');
+        return array("{$package->vendor}\\{$package->name}\\", 'extensions/'.$package->lowerVendor.'/'.$package->lowerName.'/src/'.$package->name);
     }
     
 }

@@ -95,6 +95,22 @@ class PcckageCreatorTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test write processor directory method
+     * 
+     * @test
+     */
+    public function testWritePresenterDirectoryMethod()
+    {
+        list($filesystem, $package) = $this->getMocks();
+
+        $filesystem->shouldReceive('makeDirectory')->once()->andReturn(true)
+        ->shouldReceive('put')->once()->andReturn(1);
+
+        $creator = new PackageCreator($filesystem);
+        $creator->writePresenterDirectory($package, __DIR__);
+    }
+
+    /**
      * Test write validator directory method
      * 
      * @test
